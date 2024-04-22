@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+int main(){
+	float num1,num2,result;
+	int choice;
+	cout<<"\n--------WELCOME TO SIMPLE CALCULATOR--------"<<endl;
+	cout<<"\n\nEnter the first digit:"<<endl;
+	cin>>num1;
+	cout<<"Enter the second digit:"<<endl;
+	cin>>num2;
+	//List of operations that can be performed//
+	cout<<"\nChoose an operation:"<<endl;
+	cout<<"1: Addition"<<endl;
+	cout<<"2: Subtraction"<<endl;
+	cout<<"3: Multiplication"<<endl;
+	cout<<"4: Division"<<endl;
+	cout<<"5: Exit"<<endl;
+	cout<<"\nEnter your choice(1/2/3/4/5):";
+	cin>>choice;
+	if(choice == 1){
+		result = num1 + num2;
+		cout<<"\nResult:" <<num1<<" + "<<num2<<" = "<<result;
+	}
+	if(choice == 2){
+		result = num1 - num2;
+		cout<<"\nResult:" <<num1<<" - "<<num2<<" = "<<result;
+	}
+	else if(choice == 3){
+    result = num1 * num2;
+		cout<<"\nResult:" <<num1<<" * "<<num2<<" = "<<result;
+	}
+	else if(choice == 4){
+		result = num1 / num2;
+		cout<<"\nResult:" <<num1<<" / "<<num2<<" = "<<result;
+	}
+	else if(choice == 5){
+		cout<<"\nExciting.....Goodbye!";
+	}
+	else{
+		cout<<"\nInvalid choice!";
+		return 1;
+	}
+	return 0;
+}
