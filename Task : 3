@@ -1,0 +1,133 @@
+#include<iostream>
+#include<iomanip>
+#include<conio.h>
+using namespace std;
+char mark[9] = {' ',' ',' ',' ',' ',' ',' ',' ',' '};
+int StartMenu();
+int board();
+int restart=6;
+int display(int);
+int check();
+int main(){
+	start:
+		int flag,i=6;
+		char Sub[9]={' ',' ',' ',' ',' ',' ',' ',' ',' '};
+		if (flag==1){
+			for(int e=0;e<=8;e++){
+				mark[e]=Sub[e];
+			}
+			
+		}
+		StartMenu(); int s,player=1,posi; char res='Y';
+		do{
+			flag=0;
+			restart=i;
+			posi=display(player);
+			s=player;
+			if(player==1){
+				mark[posi] = 'X';
+				player++;
+			}
+			else{
+				mark[posi] = 'O';
+				player--;
+			}
+			i = check();
+			if(i == 1){
+				board();
+				cout<<"\a\n\t\t\t\tCongrats Player: "<<s <<" won the game.";
+			}
+			else if(i == 0){
+				cout<<"\nGAME OVER";
+			}
+			if(i==1 || i==0){
+				cout<<"\n\n\t\t\t\t\tEnter (Y/y) if you wish to Play Again:\t ";
+				cin>>res; 
+				flag=1;
+				if(res=='Y' || res=='y'){
+					system("CLS");
+					goto start;
+				}
+				else
+				cout<<"\n\n\t\t\t\tThanks For Playing!\n\n";
+			}
+		}
+		while(res=='Y' || res=='y');
+}
+int display(int a){
+	int f;
+	board();
+	if(restart!=0 && restart!=1){
+		cout<<"\t\t\t\t\tPlayer "<<a <<" Enter your Move:";
+		cin>>f;
+		while(f>9 || f==0){
+			cout<<"\t\t\t\t\tInvalid Position.Try Again! ";
+			cout<<"\n\n\t\t\t\t\tPlayer "<<a <<" Enter Your Move: ";
+			cin>>f;
+		}
+		while(mark[f-1] != ' '){
+			cout<<"\t\t\t\t\tPlease Select an Empty Space.Try Again!\n\n\t\t\t\t\tPlayer "<<a <<" Enter Your Move: ";
+			cin>>f;
+		}
+		system("CLS");
+	}
+	return f-1;
+}
+int StartMenu(){
+	char f;
+	cout<<"\n\t\t\t\t\t==============================\n\t\t\t\t\t\tTIC TAC TOE GAME\n\t\t\t\t\t==============================";
+	cout<<"\n Rules:\n\n1.Both Players take turns to perform their move.\n2.Enter Numbers from 1-9 according to position, ";
+	cout<<"As shown in the example Below:\n";
+	cout<<"\t\t\t\t\t\t      |      |      \n";
+	cout<<"\t\t\t\t\t\t   1  |   2  |   3  \n";
+	cout<<"\t\t\t\t\t\t------ ------ ------\n";
+	cout<<"\t\t\t\t\t\t      |      |      \n";
+	cout<<"\t\t\t\t\t\t   4  |   5  |   6  \n";
+	cout<<"\t\t\t\t\t\t------ ------ ------\n";
+	cout<<"\t\t\t\t\t\t      |      |      \n";
+	cout<<"\t\t\t\t\t\t   7  |   8  |   9  \n";
+	cout<<"\n3.The first player who is able to get 3 marks in a row (up, down, across, diagnolly) will be the winner.";
+	cout<<"\n\nPress Any Key to Start the Game:\t";
+	f=getch();
+	system("CLS");
+}
+int board(){
+	cout<<"\n\t\t\t\t\t==============================\n\t\t\t\t\t\tTIC TAC TOE GAME\n\t\t\t\t\t==============================";
+	cout<<"\t\t\t\t\t    Player 1: X  |  Player 2: O\n\n\n";
+	cout<<"\t\t\t\t\t\t      |      |      \n";
+	cout<<"\t\t\t\t\t\t   "<<mark[0]<<"  |   " <<mark[1]<<"  |  "<<mark[2]<<"  \n";
+	cout<<"\t\t\t\t\t\t------ ------ ------\n";
+	cout<<"\t\t\t\t\t\t      |      |      \n";
+	cout<<"\t\t\t\t\t\t   "<<mark[3]<<"  |   "<<mark[4]<<"  |  "<<mark[5]<<"  \n";
+	cout<<"\t\t\t\t\t\t------ ------ ------\n";
+	cout<<"\t\t\t\t\t\t   "<<mark[6]<<"  |   "<<mark[7]<<"  |  "<<mark[8]<<"  \n";
+	cout<<"\t\t\t\t\t\t      |      |      \n\n";
+}
+int check()
+{
+	if(mark[0]==mark[1] && mark[1]==mark[2]  && mark[0]!=' '){
+		return 1;}
+    else if(mark[3]==mark[4] && mark[4]==mark[5] && mark[3]!=' '){
+			return 1;
+	}
+	else if(mark[6]==mark[7] && mark[7]==mark[8] && mark[4]!=' '){
+			return 1;
+	}
+	else if(mark[0]==mark[3] && mark[3]==mark[6] && mark[0]!=' '){
+			return 1;
+	}
+	else if(mark[1]==mark[4] && mark[4]==mark[7] && mark[1]!=' '){
+			return 1;
+	}
+	else if(mark[2]==mark[5] && mark[5]==mark[8] && mark[2]!=' '){
+			return 1;
+	}
+	else if(mark[0]==mark[4] && mark[4]==mark[8] && mark[0]!=' '){
+			return 1;
+	}
+	else if(mark[2]==mark[4] && mark[4]==mark[6] && mark[2]!=' '){
+			return 1;
+	}
+	else if(mark[0]!= ' ' && mark[1] != ' ' && mark[2]!= ' ' && mark[3] != ' ' && mark[4] !=' ' && mark[5] != ' ' && mark[6] != ' ' && mark[7]!= ' ' && mark[8] != ' '){
+			return 0;}
+	}
